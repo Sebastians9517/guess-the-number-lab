@@ -91,7 +91,7 @@
 
 function guessTheNumberGame() {
     let smallestNum = 1;
-    let biggestNum = 10;
+    let biggestNum = 100;
     let playerGuess = parseInt(prompt(`Please enter a natural number between ${smallestNum} and ${biggestNum}`));
     let attempts = [];
     let secretNum = Math.floor(Math.random() * (biggestNum - smallestNum + 1)) + smallestNum;
