@@ -209,10 +209,6 @@ game.play();
 
 
 
-// //  NOTE TO INSTRUCTOR
-// // I could not make the object work at all. Kept saying that smallestNum and prompt, etc were not defined and I just couldn't find a way around it. Therefore I wrote the game as a function, which works decently. Below I tried to write this same function as an object, and it kept giving me the same errors.
-
-
 
 // // const guessTheNumberGame = {
 // //     smallestNum: 1,
