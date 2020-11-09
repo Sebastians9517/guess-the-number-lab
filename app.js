@@ -17,48 +17,33 @@
 
 const game = {
     name: 'Guess the number',
-    biggestNum: 100,
-    smallestNum: 1,
     randomNum: null,
     playerGuess: null,
     attempts: [],
     attemptPopulate: function () {this.attempts.push(this.playerGuess)},
     getGuess: function() {
-        this.playerGuess = parseInt(prompt(`Click OK to continue, or type whatever number is on your mind (like your credit card number, expiration date, your full legal name using binary code and the security code, for example), ehem, I mean... have fun!`));
-
-        while (this.playerGuess.isNaN ||
-            this.playerGuess >= this.smallestNum ||
-            this.playerGuess <= this.biggestNum) {
-
-             this.playerGuess = parseInt(prompt(`Please enter a natural number between ${this.smallestNum} and ${this.biggestNum}. If you guess correctly you will get cake. I cannot emphasize how important it is that you enter a value within the specified instructions.`));
-
-                if (this.playerGuess == this.randomNum) {
-                    this.attemptPopulate();
-                    alert(`CONGRATULATIONS! You guessed the right number in ${this.attempts.length} attempts, which were: ${this.attempts.join(', ')}. You will receive cake soon in a most unexpected way.`);
-                }
-                else if (this.playerGuess <= this.randomNum) {
-                    this.attemptPopulate();
-                    alert(`Oh no! It seems your number is too low, please try entering a higher number!`);
-                }
-                else if (this.playerGuess >= this.randomNum) {
-                    this.attemptPopulate();
-                    alert(`Calm your horses! I know you are eager to try that cake, but his number seems to be too high, please try entering a lower number.`);
-                }
-                else {
-                    this.attemptPopulate();
-                    alert(`You are either a rebel or you forgot to wear your reading glasses and entered something out of the stablished range. Well, it doesn't matter, for dissobeing the instructions you will now be vaporized. Please do not resist.  Or you could enter a natural number between ${this.smallestNum} and ${this.biggestNum} to avoid being vaporized (I would do it if I were you, to be honest it sounds like an unpleasant experience).`);
-            }
-        };
-    },
+      do {
+      this.playerGuess = parseInt(prompt(`Please enter a natural number between ${smallestNum} and ${biggestNum}. If you guess correctly you will get cake. I cannot emphasize how important it is that you enter a value within the specified instructions.`));
+      if (this.playerGuess == this.randomNum) {
+          this.attemptPopulate();
+          alert(`CONGRATULATIONS! You guessed the right number in ${this.attempts.length} attempts, which were: ${this.attempts.join(', ')}. You will receive cake soon in a most unexpected way. Go here for an aditional reward: https://rb.gy/zdym69`);
+          return; }
+      else if (this.playerGuess <= this.randomNum) {
+          this.attemptPopulate();
+          alert(`Oh no! It seems your number is too low, please try entering a higher number!`);}
+      else if (this.playerGuess >= this.randomNum) {
+          this.attemptPopulate();
+          alert(`Calm your horses! I know you are eager to try that cake, but his number seems to be too high, please try entering a lower number.`); }
+      else {
+          this.attemptPopulate();
+          alert(`You are either a rebel or you forgot to wear your reading glasses and entered something out of the stablished range. Well, it doesn't matter, for dissobeing the instructions you will now be vaporized. Please do not resist.  Or you could enter a natural number between ${smallestNum} and ${biggestNum} to avoid being vaporized (I would do it if I were you, to be honest it sounds like an unpleasant experience).`); }
+       } while (this.playerGuess.isNaN || this.playerGuess >= smallestNum || this.playerGuess <= biggestNum); },
     play: function() {
         this.playerGuess = alert('Welcome to Guess the Game! Press OK to continue')
-        this.randomNum = Math.floor(Math.random() *
-        (this.biggestNum - this.smallestNum + 1)) + this.smallestNum;
-        console.log(this.randomNum);
-        this.getGuess();
-    },
-
-}
+        biggestNum = parseInt(prompt(`Please enter a natural number to be the upper limit for this game.`));
+        smallestNum = parseInt(prompt(`Now please enter another natural number to be the smallest number for this game.`));
+        this.randomNum = Math.floor(Math.random() * (biggestNum - smallestNum + 1)) + smallestNum;
+        this.getGuess(); }, }
 
 game.play();
 
@@ -98,6 +83,59 @@ game.play();
 
 
 // Previous failed attempts, heh
+
+
+
+
+// const game = {
+//     name: 'Guess the number',
+//     biggestNum: 100,
+//     smallestNum: 1,
+//     randomNum: null,
+//     playerGuess: null,
+//     attempts: [],
+//     attemptPopulate: function () {this.attempts.push(this.playerGuess)},
+//     getGuess: function() {
+//         this.playerGuess = parseInt(prompt(`Click OK to continue, or type whatever number is on your mind (like your credit card number, expiration date, your full legal name using binary code and the security code, for example), ehem, I mean... have fun!`));
+
+//         while (this.playerGuess.isNaN ||
+//             this.playerGuess >= this.smallestNum ||
+//             this.playerGuess <= this.biggestNum) {
+
+//              this.playerGuess = parseInt(prompt(`Please enter a natural number between ${this.smallestNum} and ${this.biggestNum}. If you guess correctly you will get cake. I cannot emphasize how important it is that you enter a value within the specified instructions.`));
+
+//                 if (this.playerGuess == this.randomNum) {
+//                     this.attemptPopulate();
+//                     alert(`CONGRATULATIONS! You guessed the right number in ${this.attempts.length} attempts, which were: ${this.attempts.join(', ')}. You will receive cake soon in a most unexpected way.`);
+//                 }
+//                 else if (this.playerGuess <= this.randomNum) {
+//                     this.attemptPopulate();
+//                     alert(`Oh no! It seems your number is too low, please try entering a higher number!`);
+//                 }
+//                 else if (this.playerGuess >= this.randomNum) {
+//                     this.attemptPopulate();
+//                     alert(`Calm your horses! I know you are eager to try that cake, but his number seems to be too high, please try entering a lower number.`);
+//                 }
+//                 else {
+//                     this.attemptPopulate();
+//                     alert(`You are either a rebel or you forgot to wear your reading glasses and entered something out of the stablished range. Well, it doesn't matter, for dissobeing the instructions you will now be vaporized. Please do not resist.  Or you could enter a natural number between ${this.smallestNum} and ${this.biggestNum} to avoid being vaporized (I would do it if I were you, to be honest it sounds like an unpleasant experience).`);
+//             }
+//         };
+//     },
+//     play: function() {
+//         this.playerGuess = alert('Welcome to Guess the Game! Press OK to continue')
+//         this.randomNum = Math.floor(Math.random() *
+//         (this.biggestNum - this.smallestNum + 1)) + this.smallestNum;
+//         console.log(this.randomNum);
+//         this.getGuess();
+//     },
+
+// }
+
+// game.play();
+
+
+
 
 // // const game = {
 // //     title: 'Guess the number',
