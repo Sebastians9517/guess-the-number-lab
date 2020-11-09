@@ -202,16 +202,17 @@ const game = {
     attempts: [],
     attemptPopulate: function () {this.attempts.push(this.playerGuess)},
     getGuess: function() {
-        this.playerGuess = parseInt(prompt(`Please enter a natural number between ${this.smallestNum} and ${this.biggestNum}`));
+        // this.playerGuess = parseInt(prompt(`Please enter a natural number between ${this.smallestNum} and ${this.biggestNum}`));
 
         while (this.playerGuess.isNaN ||
             this.playerGuess >= this.smallestNum ||
             this.playerGuess <= this.biggestNum) {
-             this.playerGuess = parseInt(prompt(`Please enter a natural number between ${this.smallestNum} and ${this.biggestNum}`));
+
+             this.playerGuess = parseInt(prompt(`Please enter a natural number between ${this.smallestNum} and ${this.biggestNum}. If you guess correctly you will get cake. I cannot emphasize how important it is that you enter a value within the specified instructions.`));
 
                 if (this.playerGuess == this.randomNum) {
                     this.attemptPopulate();
-                    alert(`CONGRATULATIONS! You guessed the right number in ${this.attempts.length} attempts, which were ${this.attempts.join()}`);
+                    alert(`CONGRATULATIONS! You guessed the right number in ${this.attempts.length} attempts, which were: ${this.attempts.join(', ')}. You will receive cake soon in a most unexpected way.`);
                 }
                 else if (this.playerGuess <= this.randomNum) {
                     this.attemptPopulate();
@@ -219,15 +220,16 @@ const game = {
                 }
                 else if (this.playerGuess >= this.randomNum) {
                     this.attemptPopulate();
-                    alert(`This number seems to be too high, please try entering a lower number`);
+                    alert(`Calm your horses! I know you are eager to try that cake, but his number seems to be too high, please try entering a lower number.`);
                 }
                 else {
                     this.attemptPopulate();
-                    alert(`You entered something out of the stablished range. Please enter a natural number between ${this.smallestNum} and ${this.biggestNum}`);
+                    alert(`You are either a rebel or you forgot to wear your reading glasses and entered something out of the stablished range. Well, it doesn't matter, for dissobeing the instructions you will now be vaporized. Please do not resist.  Or you could enter a natural number between ${this.smallestNum} and ${this.biggestNum} to avoid being vaporized (I would do it if I were you, to be honest it sounds like an unpleasant experience).`);
             }
         };
     },
     play: function() {
+        this.playerGuess = parseInt(prompt(`Please enter a natural number between ${this.smallestNum} and ${this.biggestNum}`));
 
         this.randomNum = Math.floor(Math.random() *
         (this.biggestNum - this.smallestNum + 1)) + this.smallestNum;
