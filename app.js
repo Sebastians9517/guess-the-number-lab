@@ -24,7 +24,7 @@ const game = {
     attempts: [],
     attemptPopulate: function () {this.attempts.push(this.playerGuess)},
     getGuess: function() {
-        // this.playerGuess = parseInt(prompt(`Please enter a natural number between ${this.smallestNum} and ${this.biggestNum}`));
+        this.playerGuess = parseInt(prompt(`Click OK to continue, or type whatever number is on your mind (like your credit card number, expiration date, your full legal name using binary code and the security code, for example), ehem, I mean... have fun!`));
 
         while (this.playerGuess.isNaN ||
             this.playerGuess >= this.smallestNum ||
@@ -51,8 +51,7 @@ const game = {
         };
     },
     play: function() {
-        this.playerGuess = parseInt(prompt(`Please enter a natural number between ${this.smallestNum} and ${this.biggestNum}`));
-
+        this.playerGuess = alert('Welcome to Guess the Game! Press OK to continue')
         this.randomNum = Math.floor(Math.random() *
         (this.biggestNum - this.smallestNum + 1)) + this.smallestNum;
         console.log(this.randomNum);
