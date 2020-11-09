@@ -13,6 +13,93 @@
 // Display an alert message that congrats the player and informs them of how many guesses they took.
 // End the gameplay.
 
+
+
+const game = {
+    name: 'Guess the number',
+    biggestNum: 100,
+    smallestNum: 1,
+    randomNum: null,
+    playerGuess: null,
+    attempts: [],
+    attemptPopulate: function () {this.attempts.push(this.playerGuess)},
+    getGuess: function() {
+        // this.playerGuess = parseInt(prompt(`Please enter a natural number between ${this.smallestNum} and ${this.biggestNum}`));
+
+        while (this.playerGuess.isNaN ||
+            this.playerGuess >= this.smallestNum ||
+            this.playerGuess <= this.biggestNum) {
+
+             this.playerGuess = parseInt(prompt(`Please enter a natural number between ${this.smallestNum} and ${this.biggestNum}. If you guess correctly you will get cake. I cannot emphasize how important it is that you enter a value within the specified instructions.`));
+
+                if (this.playerGuess == this.randomNum) {
+                    this.attemptPopulate();
+                    alert(`CONGRATULATIONS! You guessed the right number in ${this.attempts.length} attempts, which were: ${this.attempts.join(', ')}. You will receive cake soon in a most unexpected way.`);
+                }
+                else if (this.playerGuess <= this.randomNum) {
+                    this.attemptPopulate();
+                    alert(`Oh no! It seems your number is too low, please try entering a higher number!`);
+                }
+                else if (this.playerGuess >= this.randomNum) {
+                    this.attemptPopulate();
+                    alert(`Calm your horses! I know you are eager to try that cake, but his number seems to be too high, please try entering a lower number.`);
+                }
+                else {
+                    this.attemptPopulate();
+                    alert(`You are either a rebel or you forgot to wear your reading glasses and entered something out of the stablished range. Well, it doesn't matter, for dissobeing the instructions you will now be vaporized. Please do not resist.  Or you could enter a natural number between ${this.smallestNum} and ${this.biggestNum} to avoid being vaporized (I would do it if I were you, to be honest it sounds like an unpleasant experience).`);
+            }
+        };
+    },
+    play: function() {
+        this.playerGuess = parseInt(prompt(`Please enter a natural number between ${this.smallestNum} and ${this.biggestNum}`));
+
+        this.randomNum = Math.floor(Math.random() *
+        (this.biggestNum - this.smallestNum + 1)) + this.smallestNum;
+        console.log(this.randomNum);
+        this.getGuess();
+    },
+
+}
+
+game.play();
+
+
+// Same game but written as a function instead of an object
+
+// function guessTheNumberGame() {
+//     let smallestNum = 1;
+//     let biggestNum = 100;
+//     let playerGuess = parseInt(prompt(`Please enter a natural number between ${smallestNum} and ${biggestNum}`));
+//     let attempts = [];
+//     let secretNum = Math.floor(Math.random() * (biggestNum - smallestNum + 1)) + smallestNum;
+//     while (playerGuess !== secretNum && playerGuess >= smallestNum && playerGuess <= biggestNum) {
+//         playerGuess = parseInt(prompt(`Please enter a natural number between ${smallestNum} and ${biggestNum}`))
+
+//         if (playerGuess > secretNum) {
+//             alert(`This number is too high. Please try entering a lower number.`);
+//             attempts.push(playerGuess);
+//         }
+//         else if (playerGuess < secretNum) {
+//             alert(`This number is too low. Please try entering a higher number.`);
+//             attempts.push(playerGuess);
+//         }
+//         else if (playerGuess == secretNum) {
+//             attempts.push(playerGuess);
+//             alert(`CONGRATULATIONS! You guessed the right number in ${attempts.length} attempts, which were ${attempts.join()}`);
+//         }
+//         else if (isNaN(playerGuess)) {
+//             alert(`This is not a number. Please enter a natural number between ${smallestNum} and ${biggestNum}`);
+//         }
+//         else alert(`Your number is out of the stablished range. Please enter a number between ${smallestNum} and ${biggestNum}`);
+//     };
+// };
+
+// guessTheNumberGame();
+
+
+
+// Previous failed attempts, heh
+
 // // const game = {
 // //     title: 'Guess the number',
 // //     biggestNum: 100,
@@ -88,37 +175,6 @@
 // //  NOTE TO INSTRUCTOR
 // // I could not make the object work at all. Kept saying that smallestNum and prompt, etc were not defined and I just couldn't find a way around it. Therefore I wrote the game as a function, which works decently. Below I tried to write this same function as an object, and it kept giving me the same errors.
 
-// function guessTheNumberGame() {
-//     let smallestNum = 1;
-//     let biggestNum = 100;
-//     let playerGuess = parseInt(prompt(`Please enter a natural number between ${smallestNum} and ${biggestNum}`));
-//     let attempts = [];
-//     let secretNum = Math.floor(Math.random() * (biggestNum - smallestNum + 1)) + smallestNum;
-//     while (playerGuess !== secretNum && playerGuess >= smallestNum && playerGuess <= biggestNum) {
-//         playerGuess = parseInt(prompt(`Please enter a natural number between ${smallestNum} and ${biggestNum}`))
-
-//         if (playerGuess > secretNum) {
-//             alert(`This number is too high. Please try entering a lower number.`);
-//             attempts.push(playerGuess);
-//         }
-//         else if (playerGuess < secretNum) {
-//             alert(`This number is too low. Please try entering a higher number.`);
-//             attempts.push(playerGuess);
-//         }
-//         else if (playerGuess == secretNum) {
-//             attempts.push(playerGuess);
-//             alert(`CONGRATULATIONS! You guessed the right number in ${attempts.length} attempts, which were ${attempts.join()}`);
-//         }
-//         else if (isNaN(playerGuess)) {
-//             alert(`This is not a number. Please enter a natural number between ${smallestNum} and ${biggestNum}`);
-//         }
-//         else alert(`Your number is out of the stablished range. Please enter a number between ${smallestNum} and ${biggestNum}`);
-//     };
-// };
-
-// guessTheNumberGame();
-
-
 
 
 // // const guessTheNumberGame = {
@@ -191,52 +247,3 @@
 // //   }
 
 // //   game.play()
-
-
-const game = {
-    name: 'Guess the number',
-    biggestNum: 100,
-    smallestNum: 1,
-    randomNum: null,
-    playerGuess: null,
-    attempts: [],
-    attemptPopulate: function () {this.attempts.push(this.playerGuess)},
-    getGuess: function() {
-        // this.playerGuess = parseInt(prompt(`Please enter a natural number between ${this.smallestNum} and ${this.biggestNum}`));
-
-        while (this.playerGuess.isNaN ||
-            this.playerGuess >= this.smallestNum ||
-            this.playerGuess <= this.biggestNum) {
-
-             this.playerGuess = parseInt(prompt(`Please enter a natural number between ${this.smallestNum} and ${this.biggestNum}. If you guess correctly you will get cake. I cannot emphasize how important it is that you enter a value within the specified instructions.`));
-
-                if (this.playerGuess == this.randomNum) {
-                    this.attemptPopulate();
-                    alert(`CONGRATULATIONS! You guessed the right number in ${this.attempts.length} attempts, which were: ${this.attempts.join(', ')}. You will receive cake soon in a most unexpected way.`);
-                }
-                else if (this.playerGuess <= this.randomNum) {
-                    this.attemptPopulate();
-                    alert(`Oh no! It seems your number is too low, please try entering a higher number!`);
-                }
-                else if (this.playerGuess >= this.randomNum) {
-                    this.attemptPopulate();
-                    alert(`Calm your horses! I know you are eager to try that cake, but his number seems to be too high, please try entering a lower number.`);
-                }
-                else {
-                    this.attemptPopulate();
-                    alert(`You are either a rebel or you forgot to wear your reading glasses and entered something out of the stablished range. Well, it doesn't matter, for dissobeing the instructions you will now be vaporized. Please do not resist.  Or you could enter a natural number between ${this.smallestNum} and ${this.biggestNum} to avoid being vaporized (I would do it if I were you, to be honest it sounds like an unpleasant experience).`);
-            }
-        };
-    },
-    play: function() {
-        this.playerGuess = parseInt(prompt(`Please enter a natural number between ${this.smallestNum} and ${this.biggestNum}`));
-
-        this.randomNum = Math.floor(Math.random() *
-        (this.biggestNum - this.smallestNum + 1)) + this.smallestNum;
-        console.log(this.randomNum);
-        this.getGuess();
-    },
-
-}
-
-game.play();
